@@ -1,5 +1,7 @@
 This scripts demonstrates that [by recursively clicking on the first link of any Wikipedia page, you eventually arrive at the *Philosophy* page](https://en.wikipedia.org/wiki/Wikipedia:Getting_to_Philosophy).
 
+[Relevant xkcd](http://xkcd.com/903/) (see title text of the comic)
+
 ## Dependencies
 
 The [request](http://docs.python-requests.org/en/latest/) Python library must be installed.
