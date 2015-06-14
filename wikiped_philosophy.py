@@ -94,8 +94,9 @@ def remove_infoboxes(content):
 def is_valid_link(link):
     if link is None:
         return False
-    if link in titles_sequence:
-        return False
+    for title in titles_sequence:
+        if title.upper() == link.upper():
+            return False
     if "wikt:" in link or ":wiktionary:" in link:
         return False
     return True
@@ -109,9 +110,8 @@ if __name__ == '__main__':
     titles_sequence = []
 
     while title.upper() != "Philosophy".upper():
-        if title in titles_sequence:
-            print "ERROR - Loop detected - Stopping now"
-            break
+        assert title not in titles_sequence, "Loop detected with title " + str(title)
+
         titles_sequence.append(title)
         print "INFO -- Accessing page ", title
         content = getPageContentByTitle(title)
