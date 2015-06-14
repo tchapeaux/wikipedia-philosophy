@@ -19,7 +19,7 @@ def wikipedia_api(params):
     ACTION = "query"
     FORMAT = "json"
     url = BASE_URL + "?action=" + ACTION + "&" + params + "&format=" + FORMAT
-    headers = {'user-agent': 'tchapScript/0.1 (chapeauxthomas@gmail.com)'}
+    headers = {'user-agent': 'getting_to_philosophy/0.1 (https://github.com/tchapeaux/wikipedia-philosophy ; chapeauxthomas@gmail.com)'}
     logging.info("GET -- " + url)
     req = requests.get(url, headers=headers)
     resp = req.json()
