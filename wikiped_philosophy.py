@@ -41,9 +41,9 @@ def getPageContentByTitle(title):
         resp = wikipedia_api(PARAMS)
         pages = resp.get("query").get("pages")
         if "-1" in pages:
-            raise MediaWikiAPIError("No result for title " + title + "\n" + pages)
+            raise MediaWikiAPIError("No result for title " + title + "\n" + str(pages))
         if len(pages) > 1:
-            raise MediaWikiAPIError("More than one result for title " + title + "\n" + pages)
+            raise MediaWikiAPIError("More than one result for title " + title + "\n" + str(pages))
         page_id = pages.keys()[0]
         revisions = pages.get(page_id).get("revisions")
         assert len(revisions) == 1, "Not exactly one revision... See for yourself:\n" + str(revisions)
