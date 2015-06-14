@@ -106,9 +106,11 @@ def is_valid_link(link):
         return False
     for title in titles_sequence:
         if title.upper() == link.upper():
+            logging.info("Skipping " + title + ", already encountered")
             return False
     for pattern in wrong_patterns:
         if pattern.upper() in link.upper():
+            logging.info("Skipping " + title + ", containing pattern " + str(pattern))
             return False
     return True
 
@@ -159,4 +161,4 @@ if __name__ == '__main__':
 
     logging.info("Final title sequence: " + str(titles_sequence))
 
-    print "Found philosophy in ", len(titles_sequence), "links"
+    print "Found philosophy in", len(titles_sequence), "links"
