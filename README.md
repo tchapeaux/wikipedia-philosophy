@@ -32,4 +32,5 @@ This script seems quite good "as is" to me! It will probably not get updated muc
 - Handle other languages Wikipedias
 - Handle non-existent titles better (now it just crashes)
 - Remove "etymology" links (not really interesting)
+- Add "random first article" option
 - Have command-line arguments to enable/disable caching (it is enabled by default)
