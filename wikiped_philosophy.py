@@ -1,5 +1,6 @@
-import re
+import logging
 import os
+import re
 
 import requests
 
@@ -18,7 +19,7 @@ def wikipedia_api(params):
     FORMAT = "json"
     url = BASE_URL + "?action=" + ACTION + "&" + params + "&format=" + FORMAT
     headers = {'user-agent': 'tchapScript/0.1 (chapeauxthomas@gmail.com)'}
-    print "GET -- ", url
+    logging.info("GET -- " + url)
     req = requests.get(url, headers=headers)
     resp = req.json()
     if "warnings" in resp:
@@ -30,10 +31,10 @@ def getPageContentByTitle(title):
     # First try for a cached version
     try:
         with open("wiki_pages/wiki_"+title.upper()+".txt") as f:
-            print "INFO -- Page taken from cache"
+            logging.info("Page taken from cache")
             content = f.read()
     except IOError:
-        print "INFO -- Page not in cache: fetching from MediaWikiAPI"
+        logging.info("Page not in cache: fetching from MediaWikiAPI")
         PARAMS = "titles={TITLES}&prop=revisions&rvprop=content"
         PARAMS = PARAMS.format(TITLES=title)
         resp = wikipedia_api(PARAMS)
@@ -53,7 +54,7 @@ def getPageContentByTitle(title):
         matches = re.search("#REDIRECT ?\[\[(.*?)\]\]", content, flags=re.IGNORECASE)
         assert matches is not None, "REDIRECT link with unexpected format: " + content
         new_title = matches.groups()[0]
-        print "INFO -- Redirecting to " + new_title
+        logging.info("Redirecting to " + new_title)
         return getPageContentByTitle(new_title)
     return content
 
@@ -103,6 +104,8 @@ def is_valid_link(link):
 
 
 if __name__ == '__main__':
+    logging.basicConfig(filename="wikiped_philosophy.log", level=logging.DEBUG)
+
     if not os.path.exists("wiki_pages"):
         os.makedirs("wiki_pages")
 
@@ -110,13 +113,15 @@ if __name__ == '__main__':
     titles_sequence = []
 
     while title.upper() != "Philosophy".upper():
-        assert title not in titles_sequence, "Loop detected with title " + str(title)
+        print title
 
+        assert title not in titles_sequence, "Loop detected with title " + str(title)
         titles_sequence.append(title)
-        print "INFO -- Accessing page ", title
+
+        logging.info("Accessing page " + str(title))
         content = getPageContentByTitle(title)
 
-        print "INFO -- Removing infoboxes..."
+        logging.info("Removing infoboxes...")
         content = remove_infoboxes(content)
 
         # Search first non-visited link
@@ -130,11 +135,12 @@ if __name__ == '__main__':
             # quick hack: we want this link to be 'disabled', so we replace the first '[[' by something else
             content = content.replace('[[', 'LINKDISABLED:', 1)
 
-        print "INFO -- First link found: ", first_link
+        logging.info("First link found: " + str(first_link))
 
         title = first_link
 
-    print "INFO -- Accessed philosophy in ", len(titles_sequence), "links"
-    for i, title in enumerate(titles_sequence):
-        print "INFO -- \t", i, title
+    logging.info("Final title sequence: " + str(titles_sequence))
 
+    print "Found philosophy in ", len(titles_sequence), "links"
+    for i, title in enumerate(titles_sequence):
+        print "\t", i, title
