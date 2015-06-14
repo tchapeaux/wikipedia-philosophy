@@ -1,4 +1,4 @@
-This scripts demonstrates that by recursively clicking on the first link of any Wikipedia page, you eventually arrive at the *Philosophy* page.
+This scripts demonstrates that [by recursively clicking on the first link of any Wikipedia page, you eventually arrive at the *Philosophy* page](https://en.wikipedia.org/wiki/Wikipedia:Getting_to_Philosophy).
 
 ## Dependencies
 
