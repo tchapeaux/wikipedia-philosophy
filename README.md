@@ -39,7 +39,7 @@ Call it as any Python script:
 
 The script uses the [MediaWiki API](https://www.mediawiki.org/wiki/API:Main_page) to access article pages.
 
-The details rules for choosing each successive link are:
+The precise rules for choosing each successive link are:
 - Pages are fetched on the English language Wikipedia
 - Ignore everything before the first paragraph (infoboxes and such)
 - Already visited links are skipped
@@ -53,6 +53,7 @@ The details rules for choosing each successive link are:
                         -- Voltaire
 
 This script seems quite good "as is" to me! It will probably not get updated much further. However some people are perfectionist and they might like the script to:
+- Modify first link logic to be closer to xkcd reference
 - Handle other languages Wikipedias
 - Handle non-existent titles better (now it just crashes)
 - Remove "etymology" links (not really interesting)
