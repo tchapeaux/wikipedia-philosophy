@@ -11,6 +11,28 @@ Call it as any Python script:
 
 `(start point)` can be any title of an existing page
 
+## Example output
+    > python wikiped_philosophy.py "Knowledge"
+    Knowledge
+    awareness
+    conscious
+    Quality (philosophy)
+    Found philosophy in 4 links
+
+    > python wikiped_philosophy.py "belgian fries"
+    belgian fries
+    Comparison of American and British English
+    British English
+    [...]  # skip skip
+    cylinder (geometry)
+    surface
+    mathematics
+    quantity
+    property (philosophy)
+    modern philosophy
+    Found philosophy in 38 links
+
+
 ## More details
 
 The script uses the [MediaWiki API](https://www.mediawiki.org/wiki/API:Main_page) to access article pages.
