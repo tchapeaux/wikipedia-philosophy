@@ -1,17 +1,17 @@
 This scripts demonstrates that by recursively clicking on the first link of any Wikipedia page, you eventually arrive at the *Philosophy* page.
 
-# Dependencies
+## Dependencies
 
 The [request](http://docs.python-requests.org/en/latest/) Python library must be installed.
 
-# Usage
+## Usage
 
 Call it as any Python script:
 `python wikiped_philosophy (start point)`
 
 `(start point)` can be any title of an existing page
 
-# More details
+## More details
 
 The script uses the [MediaWiki API](https://www.mediawiki.org/wiki/API:Main_page) to access article pages.
 
@@ -21,7 +21,7 @@ The details rules for choosing each successive link are:
 - Already visited links are skipped
 - Redirection pages are always followed
 
-# TODO
+## TODO
 
     Dans ses écrits, un sage Italien
     Dit que le mieux est l'ennemi du bien.
