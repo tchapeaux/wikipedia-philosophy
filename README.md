@@ -19,6 +19,7 @@ The details rules for choosing each successive link are:
 - Pages are fetched on the English language Wikipedia
 - Ignore everything before the first paragraph (infoboxes and such)
 - Already visited links are skipped
+- Subsections are ignored (the main article is used instead)
 - Redirection pages are always followed
 
 ## TODO

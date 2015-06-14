@@ -55,6 +55,9 @@ def getPageContentByTitle(title):
         matches = re.search("#REDIRECT ?\[\[(.*?)\]\]", content, flags=re.IGNORECASE)
         assert matches is not None, "REDIRECT link with unexpected format: " + content
         new_title = matches.groups()[0]
+        if "#" in new_title:
+            # subsection: go to main article
+            new_title = new_title.split("#")[0]
         logging.info("Redirecting to " + new_title)
         return getPageContentByTitle(new_title)
     return content
@@ -138,7 +141,9 @@ if __name__ == '__main__':
             assert first_link_matches, "No link in first paragraph: " + content
             first_link = first_link_matches.groups()[0]
             if '|' in first_link:
-                first_link = first_link.split('|')[0]
+                first_link = first_link.split('|')[0]  # ignoring 'link rewording'
+            if '#' in first_link:
+                first_link = first_link.split('#')[0]  # ignoring 'subsection link'
             # quick hack: we want this link to be 'disabled', so we replace the first '[[' by something else
             content = content.replace('[[', 'LINKDISABLED:', 1)
 
