@@ -97,13 +97,19 @@ def remove_infoboxes(content):
 
 
 def is_valid_link(link):
+    wrong_patterns = [
+        "wikt:",
+        ":wiktionary:",
+        "File:",
+    ]
     if link is None:
         return False
     for title in titles_sequence:
         if title.upper() == link.upper():
             return False
-    if "wikt:" in link or ":wiktionary:" in link:
-        return False
+    for pattern in wrong_patterns:
+        if pattern.upper() in link.upper():
+            return False
     return True
 
 
