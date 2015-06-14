@@ -30,7 +30,6 @@ The details rules for choosing each successive link are:
 
 This script seems quite good "as is" to me! It will probably not get updated much further. However some people are perfectionist and they might like the script to:
 - Handle other languages Wikipedias
-- Have command-line arguments to enable/disable caching (it is enabled by default)
 - Handle non-existent titles better (now it just crashes)
-
-
+- Remove "etymology" links (not really interesting)
+- Have command-line arguments to enable/disable caching (it is enabled by default)
