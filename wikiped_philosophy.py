@@ -1,6 +1,7 @@
 import logging
 import os
 import re
+import sys
 
 import requests
 
@@ -111,6 +112,12 @@ if __name__ == '__main__':
 
     title = "human"
     titles_sequence = []
+
+    if len(sys.argv) > 1:
+        logging.info("First title given by command-line: " + sys.argv[1])
+        title = sys.argv[1]
+    else:
+        logging.info("Using default first title: " + title)
 
     while title.upper() != "Philosophy".upper():
         print title
