@@ -149,5 +149,3 @@ if __name__ == '__main__':
     logging.info("Final title sequence: " + str(titles_sequence))
 
     print "Found philosophy in ", len(titles_sequence), "links"
-    for i, title in enumerate(titles_sequence):
-        print "\t", i, title
